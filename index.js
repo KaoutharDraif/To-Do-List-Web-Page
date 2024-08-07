@@ -2,36 +2,47 @@ const inputTask = document.getElementById('inputTask');
 const buttonAdd = document.getElementById('buttonAdd');
 const inputList = document.getElementById('inputList');
 
+let task = [];
 
+function displayList() {
 
+    inputList.innerHTML = '';
 
-buttonAdd.addEventListener('click', function () {
-    const numberAdded = inputTask.value;
-    if (numberAdded.trim() !== '') {
-        const taskList = document.createElement('li');
-        taskList.textContent = numberAdded;
-        inputTask.value = '';
+    for (let i = 0; i < task.length; i++) {
+
+        const taskList = document.createElement('div');
+        taskList.textContent = task[i];
+        const markAsdone = document.createElement('checkbox')
+        markAsdone.addEventListener('click', function () {
+            if (markAsdone.checked) {
+                taskList.className = '';
+            }
+        })
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', function () {
+            deleteTask(i);
+        })
+        taskList.appendChild(deleteButton);
         inputList.appendChild(taskList);
     }
 }
 
-)
-
-// let numb = [];
-
-// function myFunction() {
-// const numberAdded = inputNumber.value;
-// let text;
-// if(numberAdded < 1 || numberAdded > 10){
-//     text = "Input Not Valid";}
-// else {
-//     text = "Input Valid"
-//     numb.push(numberAdded);
-//     document.getElementById("inputValid").innerHTML = numb;
-// }
-// document.getElementById("validation").innerHTML = text;
 
 
-// }
+buttonAdd.addEventListener('click', function () {
+    const taskAdded = inputTask.value;
+    if (taskAdded.trim() !== '') {
+        task.push(taskAdded);
+    }
+    inputTask.value = '';
+    displayList();
+}
+);
+
+function deleteTask(index) {
+    task.splice(index, 1);
+    displayList();
+}
 
 
