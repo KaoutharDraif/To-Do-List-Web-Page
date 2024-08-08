@@ -19,7 +19,7 @@ function displayList() {
             }
         })
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
+        deleteButton.classsName = '<i class="fa-solid fa-trash"></i>';
         deleteButton.addEventListener('click', function () {
             deleteTask(i);
         })
