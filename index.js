@@ -12,19 +12,25 @@ function displayList() {
 
         const taskList = document.createElement('div');
         taskList.textContent = task[i];
-        const markAsdone = document.createElement('checkbox')
-        markAsdone.addEventListener('click', function () {
-            if (markAsdone.checked) {
-                taskList.className = '';
-            }
-        })
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.addEventListener('change', function(){
+        if (checkbox.checked) {
+            taskList.style.textDecoration = 'line-through';
+        } else {
+            taskList.style.textDecoration = 'none';
+        }
+    })
+
         const deleteButton = document.createElement('button');
-        deleteButton.classsName = '<i class="fa-solid fa-trash"></i>';
+        deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
         deleteButton.addEventListener('click', function () {
             deleteTask(i);
         })
         taskList.appendChild(deleteButton);
         inputList.appendChild(taskList);
+        taskList.appendChild(checkbox);
     }
 }
 
